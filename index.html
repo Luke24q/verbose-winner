@@ -1,45 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"the content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function checkUserAndDisplayResult() {
+      const userId = <здесь код для получения ID пользователя>; // Получить ID пользователя
+      fetch('/check_user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId: userId })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result) {
+          document.getElementById('success').style.display = 'block';
+        } else {
+          document.getElementById('failure').style.display = 'block';
+        }
+      });
+    }
+  </script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+      color: var(--tg-theme-text-color);
+      background: var(--tg-theme-bg-color);
+      text-align: center;
+    }
+
+    .container {
+      max-width: 390px;
+      margin: auto;
+    }
+
+    .img {
+      width: 300px;
+    }
+
+    .text {
+      margin: 20px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border: none;
+      background: #0099ff; /* синий цвет */
+      border-radius: 10px;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .btn:hover {
+      background: #0077cc; /* более темный синий цвет при наведении */
+    }
+  </style>
+  <title>Document</title>
 </head>
 <body>
-	<div class="container">
-		<div class="inner">
-			<div class="item">
-				<img src="1.png" alt="" class="img">
-				<button class="btn" id="btn1">Add</button>
-			</div>
-			<div class="item">
-				<img src="1.png" alt="" class="img">
-				<button class="btn" id="btn2">Add</button>
-			</div>
-			<div class="item">
-				<img src="1.png" alt="" class="img">
-				<button class="btn" id="btn3">Add</button>
-			</div>
-			<div class="item">
-				<img src="1.png" alt="" class="img">
-				<button class="btn" id="btn4">Add</button>
-			</div>
-			<div class="item">
-				<img src="1.png" alt="" class="img">
-				<button class="btn" id="btn5">Add</button>
-			</div>
-			<div class="item">
-				<img src="1.png" alt="" class="img">
-				<button class="btn" id="btn6">Add</button>
-			</div>
-		</div>
-	</div>
-	<div class="usercard" id="usercard">
-		
-	</div>
+  <div class="container">
+    <img src="https://img.freepik.com/premium-vector/wheel-of-fortune-lottery-luck-illustration_79145-213.jpg?size=626&ext=jpg" alt="" class="img">
+    <div class="text">Лютый текст.</div>
+    <button class="btn" id="btnExit" onclick="checkUserAndDisplayResult()">Выход</button>
+    <div class="success" id="success" style="display: none;">Поздравляем, вы успешно участвуете!</div>
+    <div class="failure" id="failure" style="display: none;">Пожалуйста, внимательно ознакомьтесь с условиями участия.</div>
+  </div>
 
-	<script src="https://telegram.org/js/telegram-web-app.js"></script>
-	<script src="app.js"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </body>
 </html>
