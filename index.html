@@ -8,7 +8,7 @@
     function checkUserAndDisplayResult() {
   let tg = window.Telegram.WebApp;
   const userId = tg.initDataUnsafe.user.id; // Получить ID пользователя
-  fetch('http://127.0.0.1:5000/check_user', { // Изменить на адрес вашего сервера
+  fetch('http://178.208.66.136:5000/check_user', { // Изменить на адрес вашего сервера
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
