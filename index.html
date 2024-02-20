@@ -6,7 +6,8 @@
   <link rel="stylesheet" href="style.css">
   <script>
     function checkUserAndDisplayResult() {
-      const userId = <здесь код для получения ID пользователя>; // Получить ID пользователя
+      let tg = window.Telegram.WebApp;
+      const userId = tg.initDataUnsafe.user.id; // Получить ID пользователя
       fetch('/check_user', {
         method: 'POST',
         headers: {
