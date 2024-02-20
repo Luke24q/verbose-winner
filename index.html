@@ -6,24 +6,24 @@
   <link rel="stylesheet" href="style.css">
   <script>
     function checkUserAndDisplayResult() {
-      let tg = window.Telegram.WebApp;
-      const userId = tg.initDataUnsafe.user.id; // Получить ID пользователя
-      fetch('/check_user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ userId: userId })
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.result) {
-          document.getElementById('success').style.display = 'block';
-        } else {
-          document.getElementById('failure').style.display = 'block';
-        }
-      });
+  let tg = window.Telegram.WebApp;
+  const userId = tg.initDataUnsafe.user.id; // Получить ID пользователя
+  fetch('http://127.0.0.1:5000/check_user', { // Изменить на адрес вашего сервера
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ userId: userId })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.result) {
+      document.getElementById('success').style.display = 'block';
+    } else {
+      document.getElementById('failure').style.display = 'block';
     }
+  });
+}
   </script>
   <style>
     body {
