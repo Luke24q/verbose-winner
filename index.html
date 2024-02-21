@@ -19,13 +19,16 @@ function checkSubscription() {
         .then(response => {
             if (response.data.result.status === 'member' || response.data.result.status === 'creator' || response.data.result.status === 'administrator') {
                 document.getElementById("message").innerHTML = "Вы участвуете!";
+                document.getElementById("error").innerHTML = "";
             } else {
                 document.getElementById("message").innerHTML = "Присоединитесь к нашему каналу!";
+                document.getElementById("error").innerHTML = "";
             }
         })
         .catch(error => {
             console.error(error);
             document.getElementById("error").innerHTML = "Произошла ошибка: " + error.message;
+            document.getElementById("message").innerHTML = "";
         });
 }
 </script>
