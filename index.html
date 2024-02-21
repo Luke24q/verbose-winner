@@ -1,80 +1,33 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"the content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script>
-    function checkUserAndDisplayResult() {
-  let tg = window.Telegram.WebApp;
-  const userId = tg.initDataUnsafe.user.id; // Получить ID пользователя
-  fetch('http://178.208.66.136:5000/check_user', { // Изменить на адрес вашего сервера
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ userId: userId })
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.result) {
-      document.getElementById('success').style.display = 'block';
-    } else {
-      document.getElementById('failure').style.display = 'block';
-    }
-  });
-}
-  </script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-size: 18px;
-      color: var(--tg-theme-text-color);
-      background: var(--tg-theme-bg-color);
-      text-align: center;
-    }
-
-    .container {
-      max-width: 390px;
-      margin: auto;
-    }
-
-    .img {
-      width: 300px;
-    }
-
-    .text {
-      margin: 20px 0;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      border: none;
-      background: #0099ff; /* синий цвет */
-      border-radius: 10px;
-      color: #fff;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .btn:hover {
-      background: #0077cc; /* более темный синий цвет при наведении */
-    }
-  </style>
-  <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telegram Subscription Check</title>
 </head>
 <body>
-  <div class="container">
-    <img src="https://img.freepik.com/premium-vector/wheel-of-fortune-lottery-luck-illustration_79145-213.jpg?size=626&ext=jpg" alt="" class="img">
-    <div class="text">Лютый текст.</div>
-    <button class="btn" id="btnExit" onclick="checkUserAndDisplayResult()">Выход</button>
-    <div class="success" id="success" style="display: none;">Поздравляем, вы успешно участвуете!</div>
-    <div class="failure" id="failure" style="display: none;">Пожалуйста, внимательно ознакомьтесь с условиями участия.</div>
-  </div>
+<div id="message"></div>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+const userId = window.Telegram.WebApp.initDataUnsafe.user.id;
+
+function checkSubscription(userId) {
+    axios.get('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001982399686&user_id=' + userId)
+        .then(response => {
+            if (response.data.result.status === 'member' || response.data.result.status === 'creator' || response.data.result.status === 'administrator') {
+                document.getElementById("message").innerHTML = "Вы участвуете!";
+            } else {
+                document.getElementById("message").innerHTML = "Присоединитесь к нашему каналу!";
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            document.getElementById("message").innerHTML = "Произошла ошибка!";
+        });
+}
+
+checkSubscription(userId);
+</script>
 </body>
 </html>
