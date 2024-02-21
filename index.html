@@ -7,12 +7,14 @@
 </head>
 <body>
 <div id="message"></div>
+<button onclick="checkSubscription()">Проверить подписку</button>
+<div id="error"></div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 const userId = window.Telegram.WebApp.initDataUnsafe.user.id;
 
-function checkSubscription(userId) {
+function checkSubscription() {
     axios.get('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001982399686&user_id=' + userId)
         .then(response => {
             if (response.data.result.status === 'member' || response.data.result.status === 'creator' || response.data.result.status === 'administrator') {
@@ -23,11 +25,9 @@ function checkSubscription(userId) {
         })
         .catch(error => {
             console.error(error);
-            document.getElementById("message").innerHTML = "Произошла ошибка!";
+            document.getElementById("error").innerHTML = "Произошла ошибка: " + error.message;
         });
 }
-
-checkSubscription(userId);
 </script>
 </body>
 </html>
