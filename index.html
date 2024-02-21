@@ -26,7 +26,6 @@ function checkSubscription() {
             }
         })
         .catch(error => {
-            console.error(error);
             document.getElementById("error").innerHTML = "Произошла ошибка: " + error.message;
             document.getElementById("message").innerHTML = "";
         });
