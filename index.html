@@ -84,28 +84,39 @@
     <h1>User Info</h1>
     <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsum magni, molestias.</p>
-    <a href="#" class="btn" id="get-user-info">Get User Info</a>
+    <a href="#" class="btn" id="get-user-info">Участвовать</a>
     <div id="user-info"></div>
   </div>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
   <script>
     let tg = window.Telegram.WebApp;
     let getUserInfoButton = document.getElementById('get-user-info');
     let userInfoDiv = document.getElementById('user-info');
     tg.expand();
-
-    getUserInfoButton.addEventListener("click", () => {
+    
+    getUserInfoButton.addEventListener("click", async () => {
       const user = tg.initDataUnsafe.user;
-      const fullName = user.first_name + " " + user.last_name;
+      const fullName = user.first_name + (user.last_name ? " " + user.last_name : "");
       const userId = user.id;
 
-      userInfoDiv.innerHTML = `
-        <p>Name: ${fullName}</p>
-        <p>ID: ${userId}</p>
-      `;
-    });
+      const response = await fetch('https://api.telegram.org/bot<6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk>/check', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ user_id: userId })
+      });
 
+      const data = await response.json();
+      userInfoDiv.innerHTML = `<p>${data.message}</p>`;
+
+      if (data.message === 'Yes') {
+        userInfoDiv.innerHTML += `
+          <p>ID: ${userId}</p>
+          <p>Name: ${fullName}</p>
+        `;
+      }
+    });
   </script>
 </body>
 </html>
