@@ -69,7 +69,6 @@
             padding: 10px;
             background-color: #f7f7f7;
             border-radius: 5px;
-            display: none;
             opacity: 0;
             transition: opacity 0.5s ease-in;
         }
@@ -83,7 +82,6 @@
     <div id="main">
         <h1>User Info</h1>
         <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
-        <p id="description">Click the button to check your subscription status.</p>
         <a href="#" class="btn" id="get-user-info">Участвовать</a>
         <div id="user-info">
             <p id="subscription-status"></p>
@@ -101,7 +99,6 @@
 
             const data = await response.json();
 
-            let description = document.getElementById('description');
             let subscriptionStatus = document.getElementById('subscription-status');
 
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator")) {
@@ -110,16 +107,12 @@
                 subscriptionStatus.textContent = "Подписка на канал: Нет";
             }
 
-            description.style.opacity = 0; // Set opacity to 0 initially
+            getUserInfoButton.style.display = "none";
 
-            description.style.transition = "opacity 0.5s ease-out";
+            userInfoDiv.style.opacity = 0; // Set opacity to 0 initially
+            userInfoDiv.style.display = "block";
             setTimeout(() => {
-                description.style.display = "none"; // Hide the description after fading out
-                userInfoDiv.style.opacity = 0; // Set opacity of user info to 0 initially
-                setTimeout(() => {
-                    userInfoDiv.style.display = "block"; // Show the user info
-                    userInfoDiv.style.opacity = 1; // Fade in the user info
-                }, 500);
+                userInfoDiv.style.opacity = 1; // Fade in the user info
             }, 500);
         });
     </script>
