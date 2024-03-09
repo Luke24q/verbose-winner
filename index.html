@@ -47,23 +47,6 @@
             color: var(--tg-theme-button-color);
         }
 
-        .btn {
-            text-decoration: none;
-            color: var(--tg-theme-button-color);
-            background: var(--tg-theme-button-text-color);
-            border: 2px solid var(--tg-theme-button-color);
-            padding: 10px;
-            border-radius: 5px;
-            transition: all 0.3s;
-            margin-top: 10px;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background: var(--tg-theme-secondary-bg-color);
-            color: var(--tg-theme-button-text-color);
-        }
-
         #user-info {
             margin-top: 30px;
             opacity: 0;
@@ -82,12 +65,10 @@
         <div id="user-info">
             <p id="subscription-status"></p>
         </div>
-        <a href="#" class="btn" id="get-user-info">Участвовать</a>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
-        let getUserInfoButton = document.getElementById('get-user-info');
         let userInfoDiv = document.getElementById('user-info');
         tg.expand();
 
@@ -103,12 +84,10 @@
                 subscriptionStatus.textContent = "Подписка на канал: Нет";
             }
 
-            getUserInfoButton.style.display = "none";
-
-            userInfoDiv.style.opacity = 0; // Задаем изначальную непрозрачность 0
+            userInfoDiv.style.opacity = 0;
             userInfoDiv.style.display = "block";
             setTimeout(() => {
-                userInfoDiv.style.opacity = 1; // Плавное появление информации о пользователе
+                userInfoDiv.style.opacity = 1;
             }, 500);
         });
     </script>
