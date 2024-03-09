@@ -66,9 +66,6 @@
 
         #user-info {
             margin-top: 30px;
-            padding: 10px;
-            background-color: #f7f7f7;
-            border-radius: 5px;
             opacity: 0;
             transition: opacity 0.5s ease-in;
         }
@@ -81,19 +78,17 @@
 <body>
     <div id="main">
         <h1>User Info</h1>
-        <img src="https://gif-export-bot.cc/BQACAgIAAxkDAAEYJutl7PLvCPGH3EKscLKAdiCdG5IDIgAC7D4AAn12aUsByVHkPuaorjQE/gift_animated_sticker.gif">
-        <div id="text-space"></div>
+        <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
+        <div id="user-info">
+            <p id="subscription-status"></p>
+        </div>
         <a href="#" class="btn" id="get-user-info">Участвовать</a>
-    </div>
-    <div id="user-info" style="display: none;">
-        <p id="subscription-status"></p>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
         let getUserInfoButton = document.getElementById('get-user-info');
         let userInfoDiv = document.getElementById('user-info');
-        let textSpace = document.getElementById('text-space');
         tg.expand();
 
         getUserInfoButton.addEventListener("click", async () => {
@@ -113,15 +108,6 @@
 
             userInfoDiv.style.opacity = 0; // Set opacity to 0 initially
             userInfoDiv.style.display = "block";
-            setTimeout(() => {
-
-                userInfoDiv.style.opacity = 1; // Fade in the user info
-            }, 500);
-        });
-        
-        getUserInfoButton.addEventListener("click", () => {
-            textSpace.innerHTML = '<div id="user-info"><p id="subscription-status"></p></div>';
-            userInfoDiv.style = ""; // Remove previous styles from div
             setTimeout(() => {
                 userInfoDiv.style.opacity = 1; // Fade in the user info
             }, 500);
