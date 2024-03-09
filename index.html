@@ -18,8 +18,8 @@
     body {
       font-family: 'Montserrat', sans-serif;
       font-weight: 300;
-      color: #333;
-      background: #f8f8f8;
+      color: var(--tg-theme-text-color);
+      background: var(--tg-theme-bg-color);
     }
 
     #main {
@@ -43,23 +43,28 @@
     p {
       width: 350px;
       margin: 0 auto;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+      color: var(--tg-theme-hint-color);
+    }
+
+    p.price {
+      color: var(--tg-theme-button-color);
     }
 
     .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 18px;
-      font-weight: 500;
-      background-color: #007bff;
-      color: #fff;
-      border-radius: 5px;
+      display: block;
       text-decoration: none;
-      transition: background-color 0.3s ease;
+      color: var(--tg-theme-button-color);
+      background: var(--tg-theme-button-text-color);
+      border: 2px solid var(--tg-theme-button-color);
+      padding: 10px;
+      border-radius: 5px;
+      transition: all 0.3s;
     }
 
     .btn:hover {
-      background-color: #0056b3;
+      background: var(--tg-theme-secondary-bg-color);
+      color: var(--tg-theme-button-text-color);
     }
 
     #user-info {
