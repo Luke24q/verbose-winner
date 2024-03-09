@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>User Info</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wqht@200;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:w300,500&display=swap');
 
     * {
       margin: 0;
@@ -17,9 +17,9 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
-      font-weight: 200;
-      color: var(--tg-theme-text-color);
-      background: var(--tg-theme-bg-color);
+      font-weight: 300;
+      color: #333;
+      background: #f8f8f8;
     }
 
     #main {
@@ -31,6 +31,8 @@
     h1 {
       margin-top: 50px;
       margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 28px;
     }
 
     img {
@@ -41,11 +43,34 @@
     p {
       width: 350px;
       margin: 0 auto;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: 500;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
     }
 
     #user-info {
-      margin: 50px auto;
-      font-size: 18px;
+      margin-top: 30px;
+      padding: 10px;
+      background-color: #f7f7f7;
+      border-radius: 5px;
+    }
+
+    #user-info p {
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -54,7 +79,7 @@
     <h1>User Info</h1>
     <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsum magni, molestias.</p>
-    <button id="get-user-info">Get User Info</button>
+    <a href="#" class="btn" id="get-user-info">Get User Info</a>
     <div id="user-info"></div>
   </div>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
