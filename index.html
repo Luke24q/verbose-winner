@@ -1,51 +1,81 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ru">
 <head>
-  <title>Button example</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>User Info</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wqht@200;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 200;
+      color: var(--tg-theme-text-color);
+      background: var(--tg-theme-bg-color);
+    }
+
+    #main {
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 50px;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 70px;
+      margin: 30px auto;
+    }
+
+    p {
+      width: 350px;
+      margin: 0 auto;
+    }
+
+    #user-info {
+      margin: 50px auto;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
-  <button id="checkMembership">Проверить участие</button>
+  <div id="main">
+    <h1>User Info</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsum magni, molestias.</p>
+    <button id="get-user-info">Get User Info</button>
+    <div id="user-info"></div>
+  </div>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      let checkMembershipButton = document.getElementById('checkMembership');
-      checkMembershipButton.addEventListener("click", checkMembership);
+    let tg = window.Telegram.WebApp;
+    let getUserInfoButton = document.getElementById('get-user-info');
+    let userInfoDiv = document.getElementById('user-info');
+    tg.expand();
+
+    getUserInfoButton.addEventListener("click", () => {
+      const user = tg.initDataUnsafe.user;
+      const fullName = user.first_name + " " + user.last_name;
+      const userId = user.id;
+
+      userInfoDiv.innerHTML = `
+        <p>Name: ${fullName}</p>
+        <p>ID: ${userId}</p>
+      `;
     });
 
-    function checkMembership() {
-      let userId = window.Telegram.WebApp.initDataUnsafe.user.id;
-      fetchMembership(userId);
-    }
-
-    async function fetchMembership(userId) {
-      const bot = new TeleBot({
-        token: 'your_bot_token_here'
-      });
-
-      try {
-        const channel_info = await bot.getChatMember({ chatId: -1001982399686, userId });
-
-        const channel_info2 = await bot.getChatMember({ chatId: -1001670297351, userId });
-
-        if (
-          channel_info.status === 'member' ||
-          channel_info.status === 'creator' ||
-          channel_info.status === 'administrator' ||
-          channel_info2.status === 'member' ||
-          channel_info2.status === 'creator' ||
-          channel_info2.status === 'administrator'
-        ) {
-          console.log('User is a member, creator, or administrator in at least one channel');
-
-          bot.sendMessage(userId, 'Привет, это сообщение от бота!');
-        } else {
-          console.log('User is not a member, creator, or administrator in any channel');
-        }
-      } catch (e) {
-        console.error('Error:', e);
-      }
-    }
   </script>
 </body>
 </html>
