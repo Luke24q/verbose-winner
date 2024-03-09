@@ -112,14 +112,15 @@
 
             description.style.opacity = 0; // Set opacity to 0 initially
 
-            userInfoDiv.style.opacity = 0; // Set opacity to 0 initially
-            description.style.transition = "opacity 1s ease-in";
-            userInfoDiv.style.transition = "opacity 1s ease-in";
+            description.style.transition = "opacity 0.5s ease-out";
             setTimeout(() => {
-                description.textContent = ""; // Empty description text
-                description.style.opacity = 1; // Fade in the empty description text
-                userInfoDiv.style.opacity = 1; // Fade in the user info
-            }, 1500);
+                description.style.display = "none"; // Hide the description after fading out
+                userInfoDiv.style.opacity = 0; // Set opacity of user info to 0 initially
+                setTimeout(() => {
+                    userInfoDiv.style.display = "block"; // Show the user info
+                    userInfoDiv.style.opacity = 1; // Fade in the user info
+                }, 500);
+            }, 500);
         });
     </script>
 </body>
