@@ -21,13 +21,14 @@
 
         #main {
             width: 100%;
-            padding: 20px;
-            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #container {
-            width: 100%;
-            margin: 0 auto;
+            width: 80%;
             padding: 20px;
             text-align: center;
             border: 1px solid #ccc;
@@ -86,7 +87,7 @@
           
             let subscriptionStatus = document.getElementById('subscription-status');
 
-            if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator" && data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
+            if (data.ok && (data.result.status === "member"  data.result.status === "administrator"  data.result.status === "creator" && data2.result.status === "member"  data2.result.status === "administrator"  data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты учавствуешь!";
             } else {
                 subscriptionStatus.innerHTML = "❌ Отклонено: <br>подпишись на необходимые соц сети";
