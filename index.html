@@ -24,17 +24,25 @@
             text-align: center;
         }
 
+        #container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: var(--tg-theme-bg-color);
+        }
+
         img {
             width: 200px;
             margin: 30px auto;
         }
 
         p {
-            width: 350px;
-            margin: 0 auto;
             margin-bottom: 10px;
-            color: var(--tg-theme-text-color); /* Изменили цвет текста на цвет заголовка */
-            font-size: 24px; /* Увеличили размер шрифта текста */
+            color: var(--tg-theme-text-color);
+            font-size: 24px;
         }
 
         #user-info {
@@ -50,9 +58,11 @@
 </head>
 <body>
     <div id="main">
-        <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
-        <div id="user-info">
-            <p id="subscription-status"></p>
+        <div id="container">
+            <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
+            <div id="user-info">
+                <p id="subscription-status"></p>
+            </div>
         </div>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
