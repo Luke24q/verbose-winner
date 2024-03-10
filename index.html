@@ -64,11 +64,18 @@
 <body>
     <div id="main">
         <div id="container">
-            <img src="https://cdn.discordapp.com/attachments/1208140410849984553/1216414412471009420/emojibest_com_AnimatedSticker.gif?ex=66004d33&is=65edd833&hm=b277fde0d1a3765d4b4339448ce86425026d325472fd8ebd2ae8b2db7ce8c9d2&" autoplay>
-            <div id="user-info">
-                <p id="subscription-status"></p>
-            </div>
-        </div>
+    <img src="https://cdn.discordapp.com/attachments/1208140410849984553/1216414412471009420/emojibest_com_AnimatedSticker.gif?ex=66004d33&is=65edd833&hm=b277fde0d1a3765d4b4339448ce86425026d325472fd8ebd2ae8b2db7ce8c9d2&" id="animated-gif">
+    <div id="user-info">
+        <p id="subscription-status"></p>
+    </div>
+</div>
+
+<script>
+    let animatedGif = document.getElementById('animated-gif');
+    animatedGif.addEventListener('animationend', () => {
+        animatedGif.style.animationPlayState = 'paused';
+    });
+</script>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
