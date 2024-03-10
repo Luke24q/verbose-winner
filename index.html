@@ -31,7 +31,7 @@
             padding: 20px;
             text-align: center;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 20px;
             background-color: var(--tg-theme-bg-color);
             max-width: 400px;
         }
@@ -87,9 +87,9 @@
             let subscriptionStatus = document.getElementById('subscription-status');
 
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator" && data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
-                subscriptionStatus.textContent = "Ты учавствуешь!";
+                subscriptionStatus.textContent = "✅ Ты учавствуешь!";
             } else {
-                subscriptionStatus.textContent = "Пожалуйста, внимательно прочтити условия и подпишись на необходимые соц сети";
+                subscriptionStatus.textContent = "❌ Отклонено:        подпишись на необходимые соц сети";
             }
 
             userInfoDiv.style.opacity = 0;
