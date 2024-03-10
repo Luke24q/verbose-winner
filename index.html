@@ -21,25 +21,28 @@
 
         #main {
             width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 20px;
+            text-align: center;
         }
 
         #container {
-            width: 80%;
+            width: 100%;
+            margin: 0 auto;
             padding: 20px;
             text-align: center;
             border: 1px solid #ccc;
             border-radius: 20px;
             background-color: var(--tg-theme-bg-color);
             max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
         }
 
         img {
             width: 200px;
-            margin: 30px auto;
+            margin: 30px auto 0;
         }
 
         p {
@@ -87,8 +90,8 @@
           
             let subscriptionStatus = document.getElementById('subscription-status');
 
-            if (data.ok && (data.result.status === "member"  data.result.status === "administrator"  data.result.status === "creator" && data2.result.status === "member"  data2.result.status === "administrator"  data2.result.status === "creator")) {
-                subscriptionStatus.textContent = "✅ Ты учавствуешь!";
+            if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
+                subscriptionStatus.textContent = "✅ Ты участвуешь!";
             } else {
                 subscriptionStatus.innerHTML = "❌ Отклонено: <br>подпишись на необходимые соц сети";
             }
