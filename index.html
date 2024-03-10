@@ -64,18 +64,11 @@
 <body>
     <div id="main">
         <div id="container">
-    <img src="https://cdn.discordapp.com/attachments/1208140410849984553/1216414412471009420/emojibest_com_AnimatedSticker.gif?ex=66004d33&is=65edd833&hm=b277fde0d1a3765d4b4339448ce86425026d325472fd8ebd2ae8b2db7ce8c9d2&" id="animated-gif">
-    <div id="user-info">
-        <p id="subscription-status"></p>
-    </div>
-</div>
-
-<script>
-    let animatedGif = document.getElementById('animated-gif');
-    animatedGif.addEventListener('animationend', () => {
-        animatedGif.style.animationPlayState = 'paused';
-    });
-</script>
+            <img src="https://cdn.discordapp.com/attachments/1208140410849984553/1216414412471009420/emojibest_com_AnimatedSticker.gif?ex=66004d33&is=65edd833&hm=b277fde0d1a3765d4b4339448ce86425026d325472fd8ebd2ae8b2db7ce8c9d2&" id="animated-gif">
+            <div id="user-info">
+                <p id="subscription-status"></p>
+            </div>
+        </div>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
@@ -86,14 +79,10 @@
         window.addEventListener("load", async () => {
             const response = await fetch('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001670297351&user_id=' + tg.initDataUnsafe.user.id);
             const data = await response.json();
-            
-            
-            
+
             const response2 = await fetch('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001982399686&user_id=' + tg.initDataUnsafe.user.id);
             const data2 = await response2.json();
-            
-            
-          
+
             let subscriptionStatus = document.getElementById('subscription-status');
 
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
@@ -107,6 +96,11 @@
             setTimeout(() => {
                 userInfoDiv.style.opacity = 1;
             }, 1000);
+        });
+
+        let animatedGif = document.getElementById('animated-gif');
+        animatedGif.addEventListener('animationend', () => {
+            animatedGif.style.animationPlayState = 'paused';
         });
     </script>
 </body>
