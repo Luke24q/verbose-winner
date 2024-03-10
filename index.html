@@ -68,16 +68,16 @@
             let subscriptionStatus = document.getElementById('subscription-status');
 
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator")) {
-                subscriptionStatus.textContent = "Подписка на канал: Да";
+                subscriptionStatus.textContent = "Вы выполнили условия и успешно приняли участие";
             } else {
-                subscriptionStatus.textContent = "Подписка на канал: Нет";
+                subscriptionStatus.textContent = "Пожалуйста, внимательно прочтите условия";
             }
 
             userInfoDiv.style.opacity = 0;
             userInfoDiv.style.display = "block";
             setTimeout(() => {
                 userInfoDiv.style.opacity = 1;
-            }, 500);
+            }, 1000);
         });
     </script>
 </body>
