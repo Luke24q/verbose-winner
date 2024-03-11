@@ -85,7 +85,7 @@
 
             let subscriptionStatus = document.getElementById('subscription-status');
 
-            if (data.ok && (data.result.status === "member" ||  data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
+            if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
             } else {
                 subscriptionStatus.innerHTML = "❌ Отклонено: <br>подпишись на необходимые соц сети";
@@ -105,3 +105,7 @@
     </script>
 </body>
 </html>
+
+
+
+Как сделать так чтобы анимация гифки проигрывались лишь 1 раз? Если это невозможно, то хотя бы зафиксировать появление последнего кадра и просто заменить гиф на статичное изображение
