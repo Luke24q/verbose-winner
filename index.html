@@ -59,6 +59,11 @@
         #user-info p {
             margin-bottom: 10px;
         }
+
+        a {
+            color: var(--tg-theme-link-color);
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -88,14 +93,13 @@
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
             } else {
-                subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://example.com/channel1">Канал 1</a>, <a href="https://example.com/channel2">Канал 2</a>';
+                subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
             }
 
             userInfoDiv.style.opacity = 0;
             userInfoDiv.style.display = "block";
             setTimeout(() => {
                 userInfoDiv.style.opacity = 1;
-
             }, 1000);
         });
     </script>
