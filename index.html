@@ -42,7 +42,6 @@
         img {
             width: 200px;
             margin: 30px auto 0;
-            animation-iteration-count: 0;
         }
 
         p {
@@ -97,11 +96,6 @@
             setTimeout(() => {
                 userInfoDiv.style.opacity = 1;
             }, 1000);
-        });
-
-        let animatedGif = document.getElementById('animated-gif');
-        animatedGif.addEventListener('animationend', () => {
-            animatedGif.style.animationPlayState = 'paused';
         });
     </script>
 </body>
