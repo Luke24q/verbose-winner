@@ -76,6 +76,7 @@
             <img src="https://cdn.discordapp.com/attachments/1208140410849984553/1217503288543412345/emojibest_com_AnimatedSticker.gif?ex=6604434c&is=65f1ce4c&hm=494d0270b8f2e5a0cd73056e8f06aba95844f39a724ca615b3d1153024baeacc&">
             <div id="user-info">
                 <p id="subscription-status"></p>
+                <button id="exit-button" style="display: none;">Выйти</button>
             </div>
         </div>
     </div>
@@ -83,6 +84,13 @@
     <script>
         let tg = window.Telegram.WebApp;
         let userInfoDiv = document.getElementById('user-info');
+        let exitButton = document.getElementById('exit-button');
+
+        // Function to close the web app
+        function closeWebApp() {
+            tg.close();
+        }
+
         tg.expand();
 
         window.addEventListener("load", async () => {
@@ -93,9 +101,9 @@
             const data2 = await response2.json();
 
             let subscriptionStatus = document.getElementById('subscription-status');
-
-            if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
+            if (data.ok && (data.result.status === "member"  data.result.status === "administrator"  data.result.status === "creator") && (data2.result.status === "member"  data2.result.status === "administrator"  data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
+                exitButton.style.display = 'block'; // Show the exit button
             } else {
                 subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
             }
@@ -107,6 +115,8 @@
                 userInfoDiv.style.opacity = 1;
             }, 1000);
         });
+
+        exitButton.addEventListener('click', closeWebApp);
     </script>
 </body>
 </html>
