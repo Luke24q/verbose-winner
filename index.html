@@ -76,7 +76,6 @@
             <div id="user-info">
                 <p id="subscription-status"></p>
             </div>
-            <button id="main-button" class="button">Main Button</button>
         </div>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -97,6 +96,7 @@
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
             } else {
+
                 subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
             }
 
@@ -108,10 +108,11 @@
             }, 1000);
         });
 
-        let mainButton = document.getElementById("main-button");
-        mainButton.addEventListener('click', function(){
+        tg.MainButton.text = "Main Button";
+        tg.MainButton.onClick(() => {
             tg.close();
         });
+
     </script>
 </body>
 </html>
