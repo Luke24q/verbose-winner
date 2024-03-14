@@ -68,6 +68,11 @@
             color: var(--tg-theme-link-color);
             text-decoration: none;
         }
+
+        #exit-button {
+            display: none;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +81,7 @@
             <img src="https://cdn.discordapp.com/attachments/1208140410849984553/1217503288543412345/emojibest_com_AnimatedSticker.gif?ex=6604434c&is=65f1ce4c&hm=494d0270b8f2e5a0cd73056e8f06aba95844f39a724ca615b3d1153024baeacc&">
             <div id="user-info">
                 <p id="subscription-status"></p>
+                <button id="exit-button" onclick="exitApp()">Exit</button>
             </div>
         </div>
     </div>
@@ -83,21 +89,32 @@
     <script>
         let tg = window.Telegram.WebApp;
         let userInfoDiv = document.getElementById('user-info');
-        let mainButton = tg.MainButton;
+        let exitButton = document.getElementById('exit-button');
 
-        // Main button click event handler
-        mainButton.onClick(() => {
-            // Handle main button click event here
-        });
+        tg.expand();
 
-        // Close the Mini App
-        tg.close();
+        function exitApp() {
+            tg.close();
+        }
 
         window.addEventListener("load", async () => {
-            // Fetch data and update UI here
+            const response = await fetch('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001670297351&user_id=' + tg.initDataUnsafe.user.id);
+            const data = await response.json();
+
+            const response2 = await fetch('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001982399686&user_id=' + tg.initDataUnsafe.user.id);
+            const data2 = await response2.json();
+
+            let subscriptionStatus = document.getElementById('subscription-status');
+
+            if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
+                subscriptionStatus.textContent = "✅ Ты участвуешь!";
+            } else {
+                subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
+            }
 
             userInfoDiv.style.opacity = 0;
             userInfoDiv.style.display = "block";
+            exitButton.style.display = "block";
 
             setTimeout(() => {
                 userInfoDiv.style.opacity = 1;
