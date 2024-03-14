@@ -68,10 +68,6 @@
             color: var(--tg-theme-link-color);
             text-decoration: none;
         }
-        
-        .tg-button {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -87,36 +83,26 @@
     <script>
         let tg = window.Telegram.WebApp;
         let userInfoDiv = document.getElementById('user-info');
-        
         tg.expand();
-        
+
         window.addEventListener("load", async () => {
             const response = await fetch('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001670297351&user_id=' + tg.initDataUnsafe.user.id);
             const data = await response.json();
-    
+
             const response2 = await fetch('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001982399686&user_id=' + tg.initDataUnsafe.user.id);
             const data2 = await response2.json();
-    
+
             let subscriptionStatus = document.getElementById('subscription-status');
-    
-            if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
+
+            if (data.ok && (data.result.status === "member"  data.result.status === "administrator"  data.result.status === "creator") && (data2.result.status === "member"  data2.result.status === "administrator"  data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
-                let mainButton = new tg.MainButton(); // Create a new MainButton object
-                mainButton.setText('Выйти'); // Set the button text
-                mainButton.onClick(closeWebApp); // Set the click event handler
-                mainButton.show(); // Show the button
-                
-                // Function to close the web app
-                function closeWebApp() {
-                    tg.close();
-                }
             } else {
                 subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
             }
-    
+
             userInfoDiv.style.opacity = 0;
             userInfoDiv.style.display = "block";
-    
+
             setTimeout(() => {
                 userInfoDiv.style.opacity = 1;
             }, 1000);
