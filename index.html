@@ -4,13 +4,11 @@
     <title>Розыгрыш</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:w300,500&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
@@ -18,19 +16,16 @@
             background: url("https://media1.giphy.com/media/2tNvsKkc0qFdNhJmKk/giphy.gif?cid=6c09b9522f2l3rgb828jdi5dllb7dqdyvm561lj1n2sr02ow&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g") fixed;
             background-size: cover;
         }
-
         #main {
             width: 100%;
             padding: 20px;
             text-align: center;
         }
-
         #container {
             width: 100%;
             margin: 0 auto;
             padding: 5%;
             text-align: center;
-            //border: 1px solid #ccc;
             border: 4px solid var(--tg-theme-link-color);
             border-radius: 20px;
             background-color: var(--tg-theme-bg-color);
@@ -40,39 +35,34 @@
             justify-content: flex-start;
             height: 80%;
         }
-
         img {
             width: 200px;
             margin: 0px auto 0;
             clip-path: inset(10px 0 0 0);
         }
-
         p {
             margin-bottom: 10px;
             color: var(--tg-theme-text-color);
             font-size: 24px;
             font-weight: bold;
         }
-
         #user-info {
             margin-top: 30px;
             opacity: 0;
             transition: opacity 0.5s ease-in;
         }
-
         #user-info p {
             margin-bottom: 10px;
         }
-
         a {
             color: var(--tg-theme-link-color);
             text-decoration: none;
         }
-
         .main-button {
             margin-top: 20px;
             opacity: 0;
             transition: opacity 0.5s ease-in;
+            display: none; /* Скрыть кнопку при загрузке страницы */
         }
     </style>
 </head>
@@ -109,12 +99,10 @@
 
             userInfoDiv.style.opacity = 0;
             userInfoDiv.style.display = "block";
-
             setTimeout(() => {
                 userInfoDiv.style.opacity = 1;
-
                 const exitButton = document.getElementById('exit-button');
-                exitButton.style.opacity = 1;
+                exitButton.style.display = "block";
             }, 2000);
         });
 
