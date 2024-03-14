@@ -30,7 +30,6 @@
             margin: 0 auto;
             padding: 5%;
             text-align: center;
-            //border: 1px solid #ccc;
             border: 4px solid var(--tg-theme-link-color);
             border-radius: 20px;
             background-color: var(--tg-theme-bg-color);
@@ -77,6 +76,7 @@
             <div id="user-info">
                 <p id="subscription-status"></p>
             </div>
+            <button id="main-button" class="button">Click Me!</button>
         </div>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -97,11 +97,11 @@
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
             } else {
+
                 subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
             }
 
             userInfoDiv.style.opacity = 0;
-            userInfoDiv.style.display = "block";
 
             setTimeout(() => {
                 userInfoDiv.style.opacity = 1;
