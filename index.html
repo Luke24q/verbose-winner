@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram WebApps</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram WebApps</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <p>Заголовок</p>
-    <button id="btn" class="button">Показать/скрыть Main Button</button>
+    <p>Заголовок</p>
+    <button id="btn" class="button">Показать/скрыть Main Button</button>
 </body>
 <script>
-    let tg = window.Telegram.WebApp;
-    tg.MainButton.text = "Мой текст"; // Задайте свой текст для кнопки
+    let tg = window.Telegram.WebApp;
+    tg.MainButton.text = "Мой текст"; // Задайте свой текст для кнопки
 
-    tg.MainButton.show(); // Показать кнопку
+    tg.MainButton.show(); // Показать кнопку
 
-    let btn = document.getElementById("btn");
-    btn.addEventListener('click', function () 
-        if (tg.MainButton.isVisible) 
-            tg.MainButton.hide();
-         else 
-            tg.MainButton.show();
-        
-    );
+    let btn = document.getElementById("btn");
+    btn.addEventListener('click', function () 
+        if (tg.MainButton.isVisible) 
+            tg.MainButton.hide();
+         else 
+            tg.MainButton.show();
+        
+    );
 
-    window.Telegram.WebApp.onEvent("mainButtonClicked", function () 
-        // Здесь вы можете отправить данные на сервер бота
-        // Например:
-        // tg.sendData("some string that we need to send");
-        alert("Main Button нажата!");
-    );
+    window.Telegram.WebApp.onEvent("mainButtonClicked", function () 
+        // Здесь вы можете отправить данные на сервер бота
+        // Например:
+        // tg.sendData("some string that we need to send");
+        alert("Main Button нажата!");
+    );
 </script>
 </html>
