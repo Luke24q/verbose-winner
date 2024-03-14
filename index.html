@@ -101,7 +101,7 @@
             const data2 = await response2.json();
 
             let subscriptionStatus = document.getElementById('subscription-status');
-            if (data.ok && (data.result.status === "member"  data.result.status === "administrator"  data.result.status === "creator") && (data2.result.status === "member"  data2.result.status === "administrator"  data2.result.status === "creator")) {
+            if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
                 exitButton.style.display = 'block'; // Show the exit button
             } else {
