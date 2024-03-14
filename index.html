@@ -67,6 +67,10 @@
             color: var(--tg-theme-link-color);
             text-decoration: none;
         }
+
+        .main-button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +80,17 @@
             <div id="user-info">
                 <p id="subscription-status"></p>
             </div>
+        </div>
+        <div class="main-button">
+            <script>
+                let tg = window.Telegram.WebApp;
+                let mainButton = tg.MainButton;
+                mainButton.text = "Main Button";
+                mainButton.onClick(() => {
+                    tg.close();
+                });
+                mainButton.show();
+            </script>
         </div>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -96,7 +111,6 @@
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
             } else {
-
                 subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
             }
 
@@ -106,11 +120,6 @@
             setTimeout(() => {
                 userInfoDiv.style.opacity = 1;
             }, 1000);
-        });
-
-        tg.MainButton.text = "Main Button";
-        tg.MainButton.onClick(() => {
-            tg.close();
         });
 
     </script>
