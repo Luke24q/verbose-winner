@@ -85,14 +85,6 @@
         let userInfoDiv = document.getElementById('user-info');
         tg.expand();
 
-
-        tg.MainButton.init({
-            text: "Click me!",
-            onClick: () => {
-                tg.close()
-    }
-});
-
         window.addEventListener("load", async () => {
             const response = await fetch('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001670297351&user_id=' + tg.initDataUnsafe.user.id);
             const data = await response.json();
