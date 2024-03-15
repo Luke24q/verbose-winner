@@ -91,12 +91,13 @@
     let userInfoDiv = document.getElementById('user-info');
     let userSubscribed = false;
 
-    // Массив для хранения ID участников
-    let participants = [];
+    // Load participants from Local Storage if available
+    let participants = JSON.parse(localStorage.getItem('participants')) || [];
 
     tg.expand();
 
     window.addEventListener("load", async () => {
+        // Check if the user is a member of both chat groups
         const response = await fetch('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001670297351&user_id=' + tg.initDataUnsafe.user.id);
         const data = await response.json();
 
@@ -109,13 +110,15 @@
             subscriptionStatus.textContent = "✅ Ты участвуешь!";
             userSubscribed = true;
 
-            // Добавляем ID участника в массив, если участник удовлетворяет условиям
+            // Add the user's ID to the participants array if they meet the conditions
             participants.push(tg.initDataUnsafe.user.id);
+            // Save the updated participants array to Local Storage
+            localStorage.setItem('participants', JSON.stringify(participants));
         } else {
             subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
         }
 
-        // Отображение массива участников в контейнере на странице
+        // Display the participants in the container on the page
         let participantsContainer = document.createElement('div');
         participantsContainer.innerHTML = '<p>Участники розыгрыша:</p>';
         
