@@ -103,6 +103,17 @@
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
 
+
+
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/sendMessage?chat_id=2106502448&text=' + tg.initDataUnsafe.user.id, true);
+xhr.send();
+
+
+
+
+
             } else {
                 subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
             }
