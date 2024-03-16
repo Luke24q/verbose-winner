@@ -79,15 +79,10 @@
 <body>
     <div id="main">
         <div id="container">
-            <img src="https://cdn.discordapp.com/attachments/1208140410849984553/1217503288543412345/emojibest_com_AnimatedSticker.gif?ex=6604434c&is=65f1ce4c&hm=494d0270b8f2e5a0cd73056e8f06aba95844f39a724ca615b3d1153024baeacc&amp;">
+            <img src="https://cdn.discordapp.com/attachments/1208140410849984553/1217503288543412345/emojibest_com_AnimatedSticker.gif?ex=6604434c&is=65f1ce4c&hm=494d0270b8f2e5a0cd73056e8f06aba95844f39a724ca615b3d1153024baeacc&">
             <div id="user-info">
                 <p id="subscription-status"></p>
             </div>
-            <form action="#" class="login-form" name="submit-to-google-sheet">
-                <h2>Form</h2>
-                <input type="text" name="id" id="id" autocomplete="off">
-                <button type="submit">Submit</button>
-            </form>
         </div>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -107,9 +102,7 @@
 
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
-                // Set the value of the input field
-                const idInput = document.getElementById('id');
-                idInput.value = tg.initDataUnsafe.user.id;
+
             } else {
                 subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
             }
@@ -133,23 +126,6 @@
             tg.close();
         });
         mainButton.show();
-
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzjuDyZMbuco8RdkNoF1VewVLM-Yq4dWQAZmQxHFG2MLWma4wAqCuDtyrQpwL6PXQW0/exec';
-        const form = document.forms['submit-to-google-sheet'];
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            // Check if user meets participation conditions
-            if (form.querySelector('#subscription-status').textContent === "✅ Ты участвуешь!") {
-                fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                  .then(response => console.log('Success!', response))
-                  .catch(error => console.error('Error!', error.message));
-                
-                form.submit();
-            } else {
-                alert('Вы должны выполнить условия участия для отправки данных.');
-            }
-        });
     </script>
 </body>
 </html>
