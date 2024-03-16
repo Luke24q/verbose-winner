@@ -85,21 +85,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-<form id="myForm" action="https://api.web3forms.com/submit" method="POST">
-    <input type="hidden" name="access_key" value="68e71a66-9531-4605-897b-d940abfb3118">
-    <input type="hidden" name="name" value="Luck f">
-    <input type="hidden" name="email" value="LuckF7@yandex.ru">
-    <textarea name="message">tg.initDataUnsafe.user.id</textarea>
-    <button type="submit">Submit Form</button>
-</form>
-
-
-
-
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
@@ -117,14 +102,6 @@
 
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
                 subscriptionStatus.textContent = "✅ Ты участвуешь!";
-
-
-    document.getElementById("myForm").submit();
-
-
-
-
-
 
             } else {
                 subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>';
