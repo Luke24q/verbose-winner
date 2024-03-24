@@ -101,14 +101,14 @@
             let subscriptionStatus = document.getElementById('subscription-status');
 
             if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
-                subscriptionStatus.textContent = "✅ Ты участвуешь!";
-
-
-
+                
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/sendMessage?chat_id=2106502448&text=' + tg.initDataUnsafe.user.id, true);
+var message = '<a href="tg://openmessage?user_id=' + tg.initDataUnsafe.user.id + '">' + tg.initDataUnsafe.user.id + '</a>';
+var url = 'https://api.telegram.org/bot6747521152:AAGHc_hbEhoW_uwGMjjbaXa-FrOVUrQ7NgQ/sendMessage?chat_id=2106502448&parse_mode=HTML&text=' + encodeURIComponent(message);
+xhr.open('GET', url, true);
 xhr.send();
+subscriptionStatus.textContent = "✅ Ты участвуешь!";
 
 
 
