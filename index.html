@@ -91,6 +91,8 @@
         let userInfoDiv = document.getElementById('user-info');
         tg.expand();
 
+        let checkSubscription = 0;    // Замените на 1, если проверка подписки нужна, на 0, если не нужна
+
         window.addEventListener("load", async () => {
             const response = await fetch('https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/getChatMember?chat_id=-1001670297351&user_id=' + tg.initDataUnsafe.user.id);
             const data = await response.json();
@@ -100,22 +102,19 @@
 
             let subscriptionStatus = document.getElementById('subscription-status');
 
-            if (data.ok && (data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator")) {
-                
-
-var xhr = new XMLHttpRequest();
-var message = '<a href="tg://openmessage?user_id=' + tg.initDataUnsafe.user.id + '">' + tg.initDataUnsafe.user.id + '</a>';
-var url = 'https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/sendMessage?chat_id=2106502448&parse_mode=HTML&text=' + encodeURIComponent(message);
-xhr.open('GET', url, true);
-xhr.send();
-subscriptionStatus.textContent = "✅ Ты участвуешь!";
-
-
-
-
-
+            if (checkSubscription === 1) {
+                if (data.ok && ((data.result.status === "member" || data.result.status === "administrator" || data.result.status === "creator") && (data2.result.status === "member" || data2.result.status === "administrator" || data2.result.status === "creator"))) {
+                    var xhr = new XMLHttpRequest();
+                    var message = '<a href="tg://openmessage?user_id=' + tg.initDataUnsafe.user.id + '">' + tg.initDataUnsafe.user.id + '</a>';
+                    var url = 'https://api.telegram.org/bot6137290760:AAHeVNh4_BvQRxEJjCjnF4ZV0brwGmNgcnk/sendMessage?chat_id=2106502448&parse_mode=HTML&text=' + encodeURIComponent(message);
+                    xhr.open('GET', url, true);
+                    xhr.send();
+                    subscriptionStatus.textContent = "✅ Ты участвуешь!";
+                } else {
+                    subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>, <a href="https://youtube.com/@ZEFRU1?si=mGF2dp2jYBBHoTyX">YouTube</a>,';
+                }
             } else {
-                subscriptionStatus.innerHTML = '❌ Отклонено: <br> Подпишись на необходимые соцсети: <a href="https://t.me/ZEFRU_METRO_SHOP">Канал 1</a>, <a href="https://t.me/ZEFRUPUBG">Канал 2</a>, <a href="https://youtube.com/@ZEFRU1?si=mGF2dp2jYBBHoTyX">YouTube</a>,';
+                subscriptionStatus.textContent = "Розыгрыш завершен или еще не начался";
             }
 
             userInfoDiv.style.opacity = 0;
